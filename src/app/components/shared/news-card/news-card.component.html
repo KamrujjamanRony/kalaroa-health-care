@@ -1,0 +1,38 @@
+<article class="max-w-xl" [ngClass]="{'max-w-xs mb-2': isAside}">
+    <a href="#">
+      <img
+        [src]="img"
+        class="mb-5 rounded-lg w-full"
+        alt="Image"
+      />
+    </a>
+    <h1
+      class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white"
+    >
+      <a href="#">{{title}}</a>
+    </h1>
+    <p class="text-sm text-slate-400 italic">{{subtitle}}</p>
+    <!-- <h2
+      class="mb-2 text-md font-bold leading-tight text-gray-700 dark:text-white"
+    >{{subtitle}}</h2> -->
+    @if (isAside) {
+      <p class="mb-4 text-gray-500 dark:text-gray-400 text-justify">
+        {{description.slice(0,100)}}@if (description.length > 100) {...}
+      </p>
+    } @else {
+      <p class="mb-4 text-gray-500 dark:text-gray-400 text-justify">
+        {{description.slice(0,160)}}@if (description.length > 160) {...}
+      </p>
+    }
+    <button
+    (click)="openNewsDetails()"
+      class="inline-flex items-center font-medium underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline"
+    >
+      Read More
+    </button>
+  </article>
+
+
+  @if(showModal){
+    <news-modal [img]="img" [title]="title" [subtitle]="subtitle" [description]="description" (closeNewsDetails)="closeNewsDetails()"></news-modal>
+  }

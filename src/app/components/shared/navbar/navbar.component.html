@@ -1,0 +1,71 @@
+<div class="navbar container mx-auto">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <label for="bar" tabindex="0" class="btn btn-ghost lg:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          id="bar"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h8m-8 6h16"
+          ></path>
+        </svg>
+      </label>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52"
+      >
+        @for (menuItem of menuItems; track $index) {
+        <li>
+          @if (!menuItem.subItems) {
+          <a [routerLink]="menuItem.link">{{ menuItem.label }}</a>
+          } @if (menuItem.subItems) {
+          <span class="hoverable">
+            {{ menuItem.label }}
+            <ul class="sub-menu" *ngIf="menuItem.subItems">
+              @for (subItem of menuItem.subItems; track $index) {
+              <li>
+                <a [routerLink]="subItem.link">{{ subItem.label }}</a>
+              </li>
+              }
+            </ul>
+          </span>
+          }
+        </li>
+        }
+      </ul>
+    </div>
+    <div class="flex">
+      <a routerLink="" class="btn btn-ghost text-xs md:text-xl uppercase">
+        <img src="../../../assets/koloroa-icon.png" class="h-10" alt="">
+        <span class="text-primary">Kalaroa</span> Health Care
+      </a>
+    </div>
+  </div>
+
+  <div class="hidden lg:flex navbar-end">
+    <ul class="menu menu-horizontal p-1 items-center rounded">
+      @for (menuItem of menuItems; track $index) {
+      <li>
+        <a [routerLink]="menuItem.link" class="pb-3">{{ menuItem.label }}</a>
+        @if (menuItem.subItems) {
+        <ul class="sub-menu">
+          @for (subItem of menuItem.subItems; track $index) {
+          <li>
+            <a [routerLink]="subItem.link">{{ subItem.label }}</a>
+          </li>
+          }
+        </ul>
+        }
+      </li>
+      }
+    </ul>
+  </div>
+</div>

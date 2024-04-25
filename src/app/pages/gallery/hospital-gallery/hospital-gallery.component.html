@@ -1,0 +1,10 @@
+<app-cover title="Hospital Gallery" sub1="Home" sub2="Gallery"></app-cover>
+
+<div class="container mx-auto my-24">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (data of gallery; track data.id) {
+        <app-gallery-card [img]="data.gPicUrl" [title]="data.galeryName" [description]="data.description" />
+      }
+    </div>
+  </div>
+  
